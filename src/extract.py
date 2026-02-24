@@ -21,17 +21,44 @@ import pandas as pd
 import requests
 import os
 
-api_key='W7XQAFQPEA7NJRQ5YST23WKT3'
-url= 'https://www.visualcrossing.com/weather-api'
-params = {
-    'api-key': api_key
-}
-
 
 # Extract visual crossing weather data for Chicago, IL
-def extract_weather_data(
+def extract_weather_data(url, params):
+    """
+    Extract weather data from the Visual Crossing Weather API for Chicago, 
+    IL for the date range 10/1/2024 - 10/31/2025.
+
+    Args:
+        url (str): The API endpoint URL.
+        params (dict): A dictionary of parameters to include in the API request.
+
+    Returns:
+        pd.DataFrame: A DataFrame containing the weather data.
+
+    Raises:
+        requests.exceptions.RequestException: If the HTTP request fails.
+        ValueError: If the response cannot be parsed as JSON.
+    """
+    try:
+        response = requests.get(url, params=params)
+        response.raise_for_status()
+
+        data = response.json()
+        days = data['days']
+        df = pd.DataFrame(days)
+
+        return df
+    except requests.exceptions.RequestException as e:
+        print(f"Error fetching weather data: {e}")
+    except ValueError as e:
+        print(f"Error parsing weather data: {e}")
+  
+    
+
+
 
 
 
 # Extract CTA transit ridership data
-def extract_transit_data(
+def extract_transit_data():
+    return None
