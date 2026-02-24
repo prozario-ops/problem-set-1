@@ -1,4 +1,4 @@
-#Test
+
 '''
 PART 1: EXTRACT WEATHER AND TRANSIT DATA
 
@@ -17,7 +17,15 @@ Load both as CSVs into /data
 '''
 
 #Write your code below
+import pandas as pd
+import requests
+import os
 
+api_key='W7XQAFQPEA7NJRQ5YST23WKT3'
+url= 'https://www.visualcrossing.com/weather-api'
+params = {
+    'api-key': api_key
+}
 
 
 # Extract visual crossing weather data for Chicago, IL
