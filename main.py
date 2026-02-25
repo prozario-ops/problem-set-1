@@ -11,7 +11,7 @@ import src.transform_load
 api_key = 'W7XQAFQPEA7NJRQ5YST23WKT3'
 location = 'Chicago,IL'
 start_date = '2024-10-01'
-end_date = '2024-10-02'
+end_date = '2025-10-31'
 
 
 url= f'https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/{location}/{start_date}/{end_date}'

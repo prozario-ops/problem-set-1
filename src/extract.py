@@ -46,13 +46,15 @@ def extract_weather_data(url, params):
         data = response.json()
         days = data['days']
         df = pd.DataFrame(days)
-
+        output_file = os.path.join('data', 'chicago_weather_range.csv')
+        df.to_csv(output_file, index=False)
+        print(f"Weather data saved to {output_file}")
         return df
     except requests.exceptions.RequestException as e:
         print(f"Error fetching weather data: {e}")
     except ValueError as e:
         print(f"Error parsing weather data: {e}")
-  
+
     
 
 
