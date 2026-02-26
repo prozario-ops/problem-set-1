@@ -63,4 +63,28 @@ def extract_weather_data(url, params):
 
 # Extract CTA transit ridership data
 def extract_transit_data():
-    return None
+    """
+    Extract daily transit ridership data for the Chicago Transit Authority (CTA) from the provided URL.
+
+    Args:        None
+
+    Returns:
+        pd.DataFrame: A DataFrame containing the transit ridership data.
+
+    Raises:
+        requests.exceptions.RequestException: If the HTTP request fails.
+        pd.errors.ParserError: If there is an error parsing the CSV data.
+        
+    """
+
+    cta_url = "https://data.cityofchicago.org/api/views/6iiy-9s97/rows.csv?accessType=DOWNLOAD"
+    try:
+        transit_df = pd.read_csv(cta_url)
+        output_file = os.path.join('data', 'cta_transit_ridership.csv')
+        transit_df.to_csv(output_file, index=False)
+        print(f"Transit data saved to {output_file}")
+        return transit_df
+    except requests.exceptions.RequestException as e:
+        print(f"Error fetching transit data: {e}")
+    except pd.errors.ParserError as e:
+        print(f"Error parsing transit data: {e}")
