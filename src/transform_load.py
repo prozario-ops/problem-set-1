@@ -13,3 +13,28 @@ PART 2: Merge and transform the data
 '''
 
 #Write your code below
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+import os
+def transform_transit_data(load=False):
+    weather_file = os.path.join('data', 'chicago_weather_range.csv')
+    transit_file = os.path.join('data', 'cta_transit_ridership.csv')
+
+    weather=pd.read_csv(weather_file)
+    transit=pd.read_csv(transit_file)
+
+    weather['datetime'] = pd.to_datetime(weather['datetime'])
+    transit['service_date'] = pd.to_datetime(transit['service_date'])
+    print("Loaded weather rows:", len(weather))
+    print("Loaded transit rows:", len(transit))
+
+
+
+    if load:
+        print("Returning raw datasets (load=True)")
+        return weather, transit
+
+
+
+
