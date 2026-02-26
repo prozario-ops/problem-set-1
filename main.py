@@ -23,11 +23,11 @@ params = {
 }
 def main():
         # Call functions from extract.py
-        weather_df= src.extract.extract_weather_data(url, params)
-        if weather_df is not None:
+        #weather_df= src.extract.extract_weather_data(url, params)
+        #if weather_df is not None:
                 print(weather_df.head())
-        else:
-               print('None returned')
+       # else:
+         #      print('None returned')
         # Call functions from transform_load.py
         # transit_df= src.transform_load.transform_transit_data()
 
