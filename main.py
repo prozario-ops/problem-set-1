@@ -34,8 +34,10 @@ def main():
        # else:
        #          print('None returned')
         # Call functions from transform_load.py
-        # transit_df= src.transform_load.transform_transit_data()
-        load_weather, load_transit = src.transform_load.transform_transit_data(load=True)
-        
+        transit_df= src.transform_load.transform_transit_data()
+        if transit_df is not None:
+                print(transit_df.head())
+        else:
+                print('None returned')
 if __name__ == "__main__":
     main()

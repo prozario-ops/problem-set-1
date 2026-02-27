@@ -26,14 +26,28 @@ def transform_transit_data(load=False):
 
     weather['datetime'] = pd.to_datetime(weather['datetime'])
     transit['service_date'] = pd.to_datetime(transit['service_date'])
-    print("Loaded weather rows:", len(weather))
-    print("Loaded transit rows:", len(transit))
+
+    weather=weather.drop_duplicates(subset='datetime')
+    transit=transit.drop_duplicates(subset='service_date')
+
+    merged=pd.merge(weather, transit, left_on='datetime', right_on='service_date', how='inner')
+
+    mask=(merged['datetime'] >= '2024-10-01') & (merged['datetime'] <= '2025-10-31')
+    merged=merged.loc[mask]
+
+    plt.figure(figsize=(12,6))
+    plt.plot(merged['datetime'], merged['total_rides'], label='DailyTransit Ridership')
+    plt.plot(merged['datetime'], merged['temp'], label='Daily Average Temperature')
+    plt.xlabel('Date')
+    plt.ylabel('Value')
+    plt.title('Daily Transit Ridership and Daily Average Temperature Over Time')
+    plt.legend()
+    plt.tight_layout()
+    plt.show()
+
+                                            
 
 
-
-    if load:
-        print("Returning raw datasets (load=True)")
-        return weather, transit
 
 
 
