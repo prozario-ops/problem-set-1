@@ -1,5 +1,5 @@
 '''
-PART 2: Merge and transform the data
+part 2: Merge and transform the data
 - Read in the two datasets from /data into two separate dataframes
 - Profile, clean, and standardize date fields for both as needed
 - Merge the two dataframe for the date range 10/1/2024 - 10/31/2025
@@ -18,6 +18,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import os
 def transform_transit_data(load=False):
+    #EDA and merging
     weather_file = os.path.join('data', 'chicago_weather_range.csv')
     transit_file = os.path.join('data', 'cta_transit_ridership.csv')
 
@@ -35,6 +36,7 @@ def transform_transit_data(load=False):
     mask=(merged['datetime'] >= '2024-10-01') & (merged['datetime'] <= '2025-10-31')
     merged=merged.loc[mask]
 
+    #Line plot
     plt.figure(figsize=(12,6))
     plt.plot(merged['datetime'], merged['total_rides'], label='DailyTransit Ridership')
     plt.plot(merged['datetime'], merged['temp'], label='Daily Average Temperature')
@@ -45,7 +47,18 @@ def transform_transit_data(load=False):
     plt.tight_layout()
     plt.show()
 
-                                            
+    #Scatter plot for February 2025
+    feb_2025=merged[(merged['datetime'] >= '2025-02-01') & (merged['datetime'] <= '2025-02-28')]
+    feb=merged.loc[mask]
+    plt.figure(figsize=(8,6))
+    plt.scatter(feb_2025['precip'], feb_2025['total_rides'])
+    plt.xlabel('Precipitation')
+    plt.ylabel('Daily Transit Ridership')
+    plt.title('Daily Transit Ridership vs. Precipitation (February 2025)')
+    plt.tight_layout()
+    plt.show()
+
+
 
 
 
