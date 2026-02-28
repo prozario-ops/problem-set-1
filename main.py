@@ -28,9 +28,13 @@ def main():
                print(weather_df.head())
         else:
               print('None returned')
-
+        transit_df= src.extract.extract_transit_data()
+        if transit_df is not None:
+                print(transit_df.head())
+        else:
+                print('None returned')
         # Call functions from transform_load.py
-        transit_df= src.transform_load.transform_transit_data()
+        transform= src.transform_load.transform_transit_data()
 
 if __name__ == "__main__":
     main()
