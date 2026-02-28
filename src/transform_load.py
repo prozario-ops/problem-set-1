@@ -20,6 +20,7 @@ import os
 def transform_transit_data():
     """
     Transform and merge the transit ridership data with the weather data, then conduct EDA to understand the relationship between weather and transit ridership over time.
+    Args:   
         None
     Returns:
         pd.DataFrame: A merged DataFrame containing the transit ridership and weather data.
