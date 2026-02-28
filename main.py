@@ -6,7 +6,7 @@ You will run this problem set from main.py so set things up accordingly
 
 import src.extract
 import src.transform_load
-#& c:\INST737\problem-set-1-INST737\problem-set-1\.venv\Scripts\python.exe c:/INST737/problem-set-1-INST737/problem-set-1/main.py
+
 # Call functions / instanciate objects from the two analysis .py files
 api_key = 'W7XQAFQPEA7NJRQ5YST23WKT3'
 location = 'Chicago,IL'
@@ -23,21 +23,14 @@ params = {
 }
 def main():
         # Call functions from extract.py
-        #weather_df= src.extract.extract_weather_data(url, params)
-        #if weather_df is not None:
-        #        print(weather_df.head())
-        #else:
-        #       print('None returned')
-        #transit_df= src.extract.extract_transit_data()
-       # if transit_df is not None:
-        #        print(transit_df.head())        
-       # else:
-       #          print('None returned')
+        weather_df= src.extract.extract_weather_data(url, params)
+        if weather_df is not None:
+               print(weather_df.head())
+        else:
+              print('None returned')
+
         # Call functions from transform_load.py
         transit_df= src.transform_load.transform_transit_data()
-        if transit_df is not None:
-                print(transit_df.head())
-        else:
-                print('None returned')
+
 if __name__ == "__main__":
     main()
