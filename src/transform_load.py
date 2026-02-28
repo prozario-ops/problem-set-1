@@ -54,6 +54,7 @@ def transform_transit_data():
     plt.title('Daily Transit Ridership and Daily Average Temperature Over Time')
     plt.legend()
     plt.tight_layout()
+    plt.savefig(os.path.join('data', 'lineplot_transit_weather.png'))
     plt.show()
 
     #Scatter plot for February 2025
@@ -65,6 +66,7 @@ def transform_transit_data():
     plt.ylabel('Daily Transit Ridership')
     plt.title('Daily Transit Ridership vs. Precipitation (February 2025)')
     plt.tight_layout()
+    plt.savefig(os.path.join('data', 'scatter_feb2025.png'))
     plt.show()
 
     #Correlation heatmap for all numeric features
@@ -79,6 +81,7 @@ def transform_transit_data():
     )
     plt.title('Correlation Heatmap of Numeric Features')
     plt.tight_layout()
+    plt.savefig(os.path.join('data', 'correlation_heatmap.png'))
     plt.show()
 
     # Save merged dataframe as CSV
